@@ -1,0 +1,17 @@
+{
+    "name": "aklump\/slim--content-cache",
+    "description": "Slim middleware for caching content for subsequent requests.",
+    "type": "library",
+    "require": {
+        "slim\/http-cache": "^0.4.0"
+    },
+    "license": "BSD",
+    "authors": [
+        {
+            "name": "Aaron Klump",
+            "email": "sourcecode@intheloftstudios.com"
+        }
+    ],
+    "homepage": "https:\/\/github.com\/aklump\/slim--content-cache",
+    "version": "0.1.0"
+}
