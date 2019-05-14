@@ -21,12 +21,12 @@ use Slim\HttpCache\CacheProvider;
  *   $user_id = isset($params['top']) ? $params['top'] : NULL;
  *   $matrix_id = $request->getAttribute('program_id');
  *   $cache_id = CacheLayer::id([$program_id, $user_id]);
- *   $request = $request->withAttribute('content_cache_id', $cache_id);
+ *   $request = $request->withAttribute('response_cache_id', $cache_id);
  * @endcode
  *
  * @package AKlump\Slim
  */
-final class ContentCache {
+final class ResponseCache {
 
   /**
    * The HTTP cache provider.
@@ -38,7 +38,7 @@ final class ContentCache {
   /**
    * The object handling the caching.
    *
-   * @var \AKlump\Slim\Middleware\ContentCacheInterface
+   * @var \AKlump\Slim\Middleware\ResponseCacheInterface
    */
   protected $cache;
 
@@ -61,7 +61,7 @@ final class ContentCache {
    *
    * @param \Slim\HttpCache\CacheProvider $cache_provider
    *   An instance of a cache provider.
-   * @param \AKlump\Slim\Middleware\ContentCacheInterface $cache
+   * @param \AKlump\Slim\Middleware\ResponseCacheInterface $cache
    *   The cache object that does the actual caching of content.
    * @param int $lifetime
    *   The number of seconds to persist the cached content.
@@ -73,7 +73,7 @@ final class ContentCache {
    */
   public function __construct(
     CacheProvider $cache_provider,
-    ContentCacheInterface $cache,
+    ResponseCacheInterface $cache,
     int $lifetime,
     callable $on_before_cache = NULL
   ) {
@@ -97,10 +97,10 @@ final class ContentCache {
    *   The new response object.
    */
   public function __invoke(ServerRequestInterface $request, ResponseInterface $response, callable $next): ResponseInterface {
-    // Check for the content_cache_id attribute which should have been set by
+    // Check for the response_cache_id attribute which should have been set by
     // another middlewear that has analyzed the request and figured the cid that
     // would work for this.  Withtout this piece we will not allowing caching.
-    $cache_id = $request->getAttribute('content_cache_id');
+    $cache_id = $request->getAttribute('response_cache_id');
     $is_cacheable = $this->lifetime && !empty($cache_id);
     $cache_control = $request->getHeader('cache-control');
     $cache_control = reset($cache_control);

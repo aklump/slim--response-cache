@@ -2,14 +2,14 @@
 
 <html>
 <head>
-  <title>Content Cache</title>
+  <title>Response Cache</title>
   <link href="search/tipuesearch.css" rel="stylesheet">
   <link href="style.css" rel="stylesheet">
 </head>
 
-<body class="page--content_cache">
+<body class="page--response_cache">
 <header>
-  <div class="pager"><a href="index.html" class="prev index">&laquo;Index</a><a href="index.html" class="index pager__book-title"></a><a href="README.html" class="next readme">Content Cache Middleware&raquo;</a></div></header>
+  <div class="pager"><a href="index.html" class="prev index">&laquo;Index</a><a href="index.html" class="index pager__book-title"></a><a href="README.html" class="next readme">Response Cache Middleware&raquo;</a></div></header>
 <section class="sub-header">
   <div class="breadcrumbs"><a href="index.html">Index</a>
          &raquo
@@ -21,7 +21,7 @@
   </section>
 
 
-<h1>Content Cache</h1>
+<h1>Response Cache</h1>
 
 <section><h2>Required Settings</h2>
 
@@ -35,12 +35,12 @@
 </thead>
 <tbody>
 <tr>
-  <td>content_cache.dir</td>
+  <td>response_cache.dir</td>
   <td>The filepath to the content cache</td>
   <td>/path/to/cache/dir</td>
 </tr>
 <tr>
-  <td>content_cache.lifetime</td>
+  <td>response_cache.lifetime</td>
   <td>The number of seconds for cache lifetime for a resource content</td>
   <td>3600</td>
 </tr>
@@ -50,7 +50,7 @@
 <pre><code>&lt;?php
 return [
   'settings' =&gt; [
-    'content_cache' =&gt; [
+    'response_cache' =&gt; [
       'file_directory' =&gt; WEB_ROOT . '/api/v1/cache',
       'lifetime_in_seconds' =&gt; 3600,
       'footer' =&gt; '&lt;div class="cache-notice"&gt;Updated on: %s&lt;/div&gt;',
@@ -58,7 +58,7 @@ return [
       'footer_date_format' =&gt; 'r',
     ],
   ],
-];  
+];
 </code></pre>
 </section>
 
@@ -67,7 +67,7 @@ return [
 </div>
 
 <footer>
-  <div class="pager"><a href="index.html" class="prev index">&laquo;Index</a><a href="index.html" class="index pager__book-title"></a><a href="README.html" class="next readme">Content Cache Middleware&raquo;</a></div>  
+  <div class="pager"><a href="index.html" class="prev index">&laquo;Index</a><a href="index.html" class="index pager__book-title"></a><a href="README.html" class="next readme">Response Cache Middleware&raquo;</a></div>
   <div id="footer-legaleeze">
     <p class="legaleeze center">Version: 0.1.0 &bull; Last Updated: Mon, 13 May 2019 18:53:47 -0700</p>
   </div>

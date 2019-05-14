@@ -2,14 +2,14 @@
 
 <html>
 <head>
-  <title>Content Cache Middleware</title>
+  <title>Response Cache Middleware</title>
   <link href="search/tipuesearch.css" rel="stylesheet">
   <link href="style.css" rel="stylesheet">
 </head>
 
 <body class="page--readme">
 <header>
-  <div class="pager"><a href="content_cache.html" class="prev content_cache">&laquo;Content Cache</a><a href="index.html" class="index pager__book-title"></a><a href="index.html" class="next index">Index&raquo;</a></div></header>
+  <div class="pager"><a href="response_cache.html" class="prev response_cache">&laquo;Response Cache</a><a href="index.html" class="index pager__book-title"></a><a href="index.html" class="next index">Index&raquo;</a></div></header>
 <section class="sub-header">
   <div class="breadcrumbs"><a href="index.html">Index</a>
          &raquo
@@ -21,7 +21,7 @@
   </section>
 
 
-<h1>Content Cache Middleware</h1>
+<h1>Response Cache Middleware</h1>
 
 <section>
 
@@ -35,12 +35,12 @@
 $container['cache'] = function () {
   return new \Slim\HttpCache\CacheProvider();
 };
-$container['content_cache'] = function () {
+$container['response_cache'] = function () {
   return new \AKlump\Slim\Middleware\FileCache('/path/to/cache/dir');
 };
 
 // Register this middleware.
-$app-&gt;add(new \AKlump\Slim\Middleware\ContentCache($container['cache'], $container['content_cache'], 3600));
+$app-&gt;add(new \AKlump\Slim\Middleware\ContentCache($container['cache'], $container['response_cache'], 3600));
 </code></pre>
 
 <h2>Contributing</h2>
@@ -65,7 +65,7 @@ $app-&gt;add(new \AKlump\Slim\Middleware\ContentCache($container['cache'], $cont
 
 <pre><code>$app-&gt;add(new \AKlump\Slim\Middleware\ContentCache(
   $container['cache'],
-  $container['content_cache'],
+  $container['response_cache'],
   3600,
   function (\DateTime $modified, $html_body) use ($settings) {
     return $html_body . sprintf("Last modified: %s', $modified-&gt;format('r'));
@@ -83,7 +83,7 @@ $app-&gt;add(new \AKlump\Slim\Middleware\ContentCache($container['cache'], $cont
 </div>
 
 <footer>
-  <div class="pager"><a href="content_cache.html" class="prev content_cache">&laquo;Content Cache</a><a href="index.html" class="index pager__book-title"></a><a href="index.html" class="next index">Index&raquo;</a></div>  
+  <div class="pager"><a href="response_cache.html" class="prev response_cache">&laquo;Response Cache</a><a href="index.html" class="index pager__book-title"></a><a href="index.html" class="next index">Index&raquo;</a></div>
   <div id="footer-legaleeze">
     <p class="legaleeze center">Version: 0.1.0 &bull; Last Updated: Mon, 13 May 2019 18:53:47 -0700</p>
   </div>

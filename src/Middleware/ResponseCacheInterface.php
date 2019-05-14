@@ -10,7 +10,7 @@ use Psr\Http\Message\ResponseInterface;
  *
  * @package AKlump\Slim
  */
-interface ContentCacheInterface {
+interface ResponseCacheInterface {
 
   /**
    * Get a cached timestamp and value.
@@ -33,9 +33,9 @@ interface ContentCacheInterface {
    * @param \Psr\Http\Message\ResponseInterface $response
    *   The response to cache.
    *
-   * @return \AKlump\Slim\Middleware\ContentCacheInterface
+   * @return \AKlump\Slim\Middleware\ResponseCacheInterface
    *   Self for chaining.
    */
-  public function set(string $cache_id, ResponseInterface $response): ContentCacheInterface;
+  public function set(string $cache_id, ResponseInterface $response): ResponseCacheInterface;
 
 }

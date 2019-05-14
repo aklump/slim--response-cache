@@ -1,4 +1,4 @@
-# Content Cache Middleware
+# Response Cache Middleware
 
 ## Summary
 
@@ -10,12 +10,12 @@ This project provides a means of caching responses so that subsequent requests d
     $container['cache'] = function () {
       return new \Slim\HttpCache\CacheProvider();
     };
-    $container['content_cache'] = function () {
+    $container['response_cache'] = function () {
       return new \AKlump\Slim\Middleware\FileCache('/path/to/cache/dir');
     };
     
     // Register this middleware.
-    $app->add(new \AKlump\Slim\Middleware\ContentCache($container['cache'], $container['content_cache'], 3600));
+    $app->add(new \AKlump\Slim\Middleware\ContentCache($container['cache'], $container['response_cache'], 3600));
     
 ## Requirements
 
@@ -41,7 +41,7 @@ If you want to alter the response body content before it is written to cache use
 
     $app->add(new \AKlump\Slim\Middleware\ContentCache(
       $container['cache'],
-      $container['content_cache'],
+      $container['response_cache'],
       3600,
       function (\DateTime $modified, $html_body) use ($settings) {
         return $html_body . sprintf("Last modified: %s', $modified->format('r'));

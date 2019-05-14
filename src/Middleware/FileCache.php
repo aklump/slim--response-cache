@@ -7,7 +7,7 @@ use Psr\Http\Message\ResponseInterface;
 /**
  * Handler for caching content using the filesystem.
  */
-class FileCache implements ContentCacheInterface {
+class FileCache implements ResponseCacheInterface {
 
   /**
    * Path to the cache directory.
@@ -41,7 +41,7 @@ class FileCache implements ContentCacheInterface {
   /**
    * {@inheritdoc}
    */
-  public function set(string $cache_id, ResponseInterface $request): ContentCacheInterface {
+  public function set(string $cache_id, ResponseInterface $request): ResponseCacheInterface {
     if (!is_writable($this->filepath)) {
       throw new \RuntimeException("The content file cache directory \"{$this->filepath}\" does not exist or is not writable.");
     }
