@@ -1,5 +1,5 @@
 {
-    "name": "aklump\/slim--response-cache",
+    "name": "aklump\/slim-response-cache",
     "description": "Slim middleware for caching responses for subsequent requests.",
     "type": "library",
     "require": {
@@ -17,6 +17,6 @@
             "AKlump\\Slim\\Middleware\\": "src/"
         }
     },
-    "homepage": "https:\/\/github.com\/aklump\/slim--response-cache",
+    "homepage": "https:\/\/github.com\/aklump\/slim-response-cache",
     "version": "0.1.0"
 }
