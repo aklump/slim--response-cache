@@ -23,7 +23,7 @@ This project provides a means of caching responses so that subsequent requests d
 
 ## Contributing
 
-If you find this project useful... please consider [making a donation](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4E5KZHDQCEUV8&item_name=Gratitude%20for%20aklump%2Faklump_slim).
+If you find this project useful... please consider [making a donation](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4E5KZHDQCEUV8&item_name=Gratitude%20for%20aklump%2Fslim--content-cache).
 
 ## Installation
 

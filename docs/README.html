@@ -9,7 +9,7 @@
 
 <body class="page--readme">
 <header>
-  <div class="pager"><a href="response_cache.html" class="prev response_cache">&laquo;Response Cache</a><a href="index.html" class="index pager__book-title"></a><a href="index.html" class="next index">Index&raquo;</a></div></header>
+  <div class="pager"><a href="content_cache.html" class="prev content_cache">&laquo;Content Cache</a><a href="index.html" class="index pager__book-title"></a><a href="index.html" class="next index">Index&raquo;</a></div></header>
 <section class="sub-header">
   <div class="breadcrumbs"><a href="index.html">Index</a>
          &raquo
@@ -27,7 +27,7 @@
 
 <h2>Summary</h2>
 
-<p>This project provides a means of caching response bodies so that subsequent requests do not pass through the route callbacks.  It is helpful if the route callbacks involve expensive calculations to generate content.  It is built on the <a href="http://www.slimframework.com/docs/v3/features/caching.html">HTTP Caching middleware</a> and should be used instead of that middleware.  It ships with a file-based cache storage, but supports other types of caching via <code>\AKlump\Slim\Middleware\ContentCacheInterface</code>.</p>
+<p>This project provides a means of caching responses so that subsequent requests do not pass through the route callbacks.  It is helpful if the route callbacks involve expensive calculations to generate content.  It is built on the <a href="http://www.slimframework.com/docs/v3/features/caching.html">HTTP Caching middleware</a> and should be used instead of that middleware.  It ships with a file-based cache storage, but supports other types of caching via <code>\AKlump\Slim\Middleware\ContentCacheInterface</code>.</p>
 
 <h2>Quick Start</h2>
 
@@ -43,9 +43,15 @@ $container['response_cache'] = function () {
 $app-&gt;add(new \AKlump\Slim\Middleware\ContentCache($container['cache'], $container['response_cache'], 3600));
 </code></pre>
 
+<h2>Requirements</h2>
+
+<ol>
+<li>The response body must be able to be cast to a string.</li>
+</ol>
+
 <h2>Contributing</h2>
 
-<p>If you find this project useful... please consider <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=4E5KZHDQCEUV8&amp;item_name=Gratitude%20for%20aklump%2Faklump_slim">making a donation</a>.</p>
+<p>If you find this project useful... please consider <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=4E5KZHDQCEUV8&amp;item_name=Gratitude%20for%20aklump%2Fslim--content-cache">making a donation</a>.</p>
 
 <h2>Installation</h2>
 
@@ -83,9 +89,9 @@ $app-&gt;add(new \AKlump\Slim\Middleware\ContentCache($container['cache'], $cont
 </div>
 
 <footer>
-  <div class="pager"><a href="response_cache.html" class="prev response_cache">&laquo;Response Cache</a><a href="index.html" class="index pager__book-title"></a><a href="index.html" class="next index">Index&raquo;</a></div>
+  <div class="pager"><a href="content_cache.html" class="prev content_cache">&laquo;Content Cache</a><a href="index.html" class="index pager__book-title"></a><a href="index.html" class="next index">Index&raquo;</a></div>  
   <div id="footer-legaleeze">
-    <p class="legaleeze center">Version: 0.1.0 &bull; Last Updated: Mon, 13 May 2019 18:53:47 -0700</p>
+    <p class="legaleeze center">Version: 0.1.0 &bull; Last Updated: Mon, 13 May 2019 19:52:43 -0700</p>
   </div>
 </footer>
 
