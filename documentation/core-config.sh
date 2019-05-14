@@ -7,7 +7,7 @@
 # An array of output formats to disable, if any
 #
 #disabled = "website drupal html text mediawiki"
-disabled = "drupal html text mediawiki"
+disabled = "website drupal html text mediawiki"
 
 ##
 # File path to the php you want to use for compiling
@@ -66,7 +66,7 @@ version_file = "../composer.json"
 
 #
 # These paths are relative to the directory containing core-config.sh.
-website_dir = '../docs'
+#website_dir = '../docs'
 #html_dir = 'html'
 #mediawiki_dir = 'mediawiki'
 #text_dir = 'text'
