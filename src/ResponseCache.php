@@ -38,7 +38,7 @@ final class ResponseCache {
   /**
    * The object handling the caching.
    *
-   * @var \AKlump\Slim\Middleware\ResponseCacheInterface
+   * @var \AKlump\Slim\Middleware\ResponseCacheProviderInterface
    */
   protected $cache;
 
@@ -61,7 +61,7 @@ final class ResponseCache {
    *
    * @param \Slim\HttpCache\CacheProvider $cache_provider
    *   An instance of a cache provider.
-   * @param \AKlump\Slim\Middleware\ResponseCacheInterface $cache
+   * @param \AKlump\Slim\Middleware\ResponseCacheProviderInterface $cache
    *   The cache object that does the actual caching of content.
    * @param int $lifetime
    *   The number of seconds to persist the cached content.
@@ -73,7 +73,7 @@ final class ResponseCache {
    */
   public function __construct(
     CacheProvider $cache_provider,
-    ResponseCacheInterface $cache,
+    ResponseCacheProviderInterface $cache,
     int $lifetime,
     callable $on_before_cache = NULL
   ) {
@@ -117,7 +117,7 @@ final class ResponseCache {
       }
     }
 
-    // If not cacheable then this middlewear has done it's thing.
+    // If not cacheable then this middleware has done it's thing.
     if (!$is_cacheable) {
       return $this->cacheProvider->denyCache($next($request, $response));
     }
@@ -127,8 +127,7 @@ final class ResponseCache {
     $response = $this->cacheProvider->allowCache($response, 'public', $this->lifetime);
     $cached = $this->cache->get($cache_id);
     $last_modified = $cached['modified'];
-    $is_expired = $last_modified + $this->lifetime < time();
-    if (!$is_expired && $cached['body']) {
+    if ($cached['status'] === 'hit' && ($last_modified + $this->lifetime > time())) {
       $response = $response->withBody(new Body(fopen('php://temp', 'r+')))
         ->write($cached['body']);
       foreach ($cached['headers'] as $k => $v) {
@@ -146,15 +145,16 @@ final class ResponseCache {
     // so you can do something like adding a "last modified on: ..." phrase to
     // the cached cotent.
     $cacheable_content = $before = $response->getBody();
+    $modified = time();
     if (is_callable($this->onBeforeCache)) {
       $callback = $this->onBeforeCache;
-      $cacheable_content = $callback(date_create()->setTimestamp($last_modified), $cacheable_content);
+      $cacheable_content = $callback(date_create()->setTimestamp($modified), $cacheable_content);
       if ($before !== $cacheable_content) {
         $response = $response->withBody(new Body(fopen('php://temp', 'r+')))
           ->write($cacheable_content);
       }
     }
-    $this->cache->set($cache_id, $response);
+    $this->cache->set($cache_id, $response, $modified);
 
     return $this->addResponseHeaders($response);
   }
