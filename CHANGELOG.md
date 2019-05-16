@@ -1,3 +1,5 @@
+# Slim Response Cache Changelog
+
 ## 0.2.0
 
 * Renamed `\AKlump\Slim\Middleware\FileCache` to `\AKlump\Slim\Middleware\FileCacheProvider`
